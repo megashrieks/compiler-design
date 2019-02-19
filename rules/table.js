@@ -62,7 +62,7 @@ const matrix = [
 	["", "E", "", "", "", "", "", "E", "", "", "", "E"],
 	["", "", "E'1", "", "E'1", "", "", "", "", "E'", "", ""],
 	["", "T", "", "", "", "", "", "T", "", "", "", "T"],
-	["", "", "T'1", "", "T'1", "", "T'", "", "", "T'", "", ""],
+	["", "", "T'1", "", "T'1", "", "T'", "", "", "T'1", "", ""],
 	["", "F", "", "", "", "", "", "F", "", "", "", "F"],
 	["", "", "F'1", "", "F'1", "", "F'1", "", "", "F'1", "F'", ""],
 	["", "R1", "", "", "", "", "", "R2", "", "", "", "R"]
@@ -103,7 +103,7 @@ const columns = [
 	"++"
 ];
 module.exports = (production, terminal) => {
-	const element =
-		grammar[matrix[rows.indexOf(production)][columns.indexOf(terminal)]];
-	return element.length ? element : null;
+	return grammar[
+		matrix[rows.indexOf(production)][columns.indexOf(terminal)]
+	].split(" ");
 };

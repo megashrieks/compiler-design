@@ -35,7 +35,7 @@
 // R -> num
 
 module.exports = {
-	Functions: "type id() begin Body end",
+	Functions: "type id ( ) begin Body end",
 	Body: "Declarations LE",
 	LE: "Loops",
 	LE1: "Expressions",

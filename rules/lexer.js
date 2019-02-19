@@ -1,50 +1,67 @@
 module.exports = [
 	{
 		value: /^\/\/.*$/g,
-		name: "single line comment"
+		name: "comments",
+		sub: false
 	},
 	{
 		value: /^\/\*(.|\n)*\*\/$/g,
-		name: "multi line comment"
+		name: "comments",
+		sub: false
 	},
 	{
 		value: /^[\s\t\n]+$/g,
-		name: "space"
+		name: "space",
+		sub: false
 	},
 	{
 		value: /^[\(\)\[\]\{\}]$/g,
-		name: "bracket"
+		name: "bracket",
+		sub: true
 	},
 	{
 		value: /^(begin|end|for)$/g,
-		name: "keyword"
+		name: "keyword",
+		sub: true
 	},
 	{
 		value: /^(int|float|char)$/g,
-		name: "type"
+		name: "type",
+		sub: false
+	},
+	{
+		value: /^(\+\+|\-\-)$/,
+		name: "operator",
+		sub: true
 	},
 	{
 		value: /^(\+|\-|\*|\/ |\=)$/,
-		name: "operator"
+		name: "operator",
+		sub: true
 	},
 	{
 		value: /^(<|>|<=|>=|==|!=)$/g,
-		name: "relational operator"
+		name: "relational operator",
+		sub: true
 	},
 	{
 		value: /^;$/g,
-		name: "statement terminator"
+		name: "statement terminator",
+		sub: true
 	},
 	{
 		value: /^(\d)+$/g,
-		name: "number"
+		name: "num",
+		sub: false
 	},
 	{
 		value: /^\d*\.\d+$/g,
-		name: "floating number"
+		name: "num",
+		sub: false
 	},
 	{
 		value: /^[a-zA-Z][a-zA-Z0-9]*$/g,
-		name: "identifier"
+		name: "id",
+		sub: false
 	}
 ];

@@ -1,4 +1,4 @@
 const lexer = require("./lexer");
 const code = require("./source/code.js");
-
-lexer(code);
+const parser = require("./parser");
+parser(lexer(code));

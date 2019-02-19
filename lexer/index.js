@@ -1,5 +1,6 @@
 var tks = require("../rules/lexer");
 module.exports = (code, tokens = tks) => {
+	let tokenList = [];
 	var lex_begin = 0,
 		matched = -1;
 	for (var i = 0; i < code.length; ++i) {
@@ -15,21 +16,32 @@ module.exports = (code, tokens = tks) => {
 			}
 		}
 		if (flag != -1 && j == tokens.length) {
-			if (tokens[matched].name != "space")
-				console.log(
-					'"' + code.substr(lex_begin, i - lex_begin) + '"',
-					tokens[matched].name
-				);
+			if (
+				tokens[matched].name != "space" &&
+				tokens[matched].name != "comments"
+			)
+				tokenList.push({
+					name: !tokens[matched].sub
+						? tokens[matched].name
+						: code.substr(lex_begin, i - lex_begin),
+					value: code.substr(lex_begin, i - lex_begin)
+				});
 			lex_begin = i;
 			matched = -1;
 			i = i - 1;
 		}
 	}
 	if (matched != -1) {
-		if (tokens[matched].name != "space")
-			console.log(
-				'"' + code.substr(lex_begin, i - lex_begin) + '"',
-				tokens[matched].name
-			);
+		if (
+			tokens[matched].name != "space" &&
+			tokens[matched].name != "comments"
+		)
+			tokenList.push({
+				name: !tokens[matched].sub
+					? tokens[matched].name
+					: code.substr(lex_begin, i - lex_begin),
+				value: code.substr(lex_begin, i - lex_begin)
+			});
 	}
+	return tokenList;
 };
