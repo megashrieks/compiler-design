@@ -56,15 +56,14 @@ function findFirst(productions, nonTerminals, terminals) {
 	var flag = true;
 	while (flag) {
 		flag = false;
-		epFlag = false;
 		for (var i in productions) {
 			var prod = productions[i].productions;
 			for (var j in prod) {
-				epFlag = false;
 				var k;
+				var eflag = false;	
 				for (k in prod[j]) {
 					if (prod[j][k] == "''") {
-						epFlag = true;
+						eflag = true;
 						continue;
 					}
 					if (isTerminal(prod[j][k])) {
@@ -74,9 +73,8 @@ function findFirst(productions, nonTerminals, terminals) {
 							productions[i].first.add(
 								...Array.from(pFirst[i][j])
 							);
-							// console.log(i, productions[i].first);
 						}
-						epFlag = false;
+						eflag = false;
 						break;
 					} else {
 						if (productions[prod[j][k]].first.size) {
@@ -86,10 +84,6 @@ function findFirst(productions, nonTerminals, terminals) {
 								)
 							);
 							if (difference.size) {
-								console.log(i, prod[j][k]);
-								console.log(difference);
-								console.log();
-								// console.log(i, j, difference);
 								flag = true;
 								pFirst[i][j].add(...Array.from(difference));
 								productions[i].first.add(
@@ -97,23 +91,27 @@ function findFirst(productions, nonTerminals, terminals) {
 								);
 							}
 							if (productions[prod[j][k]].first.has("''")) {
-								epFlag = true;
+								eflag = true;
 								continue;
 							}
 						}
-						epFlag = false;
+						eflag = false;
 						break;
 					}
 				}
-				if (epFlag && k == prod[j].length)
-					productions[i].first.add("''");
+			
+				if(! (pFirst[i][j].has("''")) ) {
+					if(eflag){
+						pFirst[i][j].add(prod[j][k]);
+						productions[i].first.add(
+							...Array.from(pFirst[i][j])
+						);
+						flag = true;
+					}
+				}
 			}
 		}
 	}
-	// for (var i in nonTerminals) {
-	// for (var j in pFirst[nonTerminals[i]])
-	// console.log(nonTerminals[i], j, pFirst[nonTerminals[i]][j]);
-	// }
 }
 function printModifiedProductions(lis) {
 	for (var i in lis) {
@@ -123,7 +121,7 @@ function printModifiedProductions(lis) {
 			console.log(productions[j]);
 	}
 }
-
+/*
 var productions = [
 	"Functions -> type id ( ) begin Body end",
 	"Body -> Declarations Body",
@@ -149,8 +147,23 @@ var productions = [
 	"X -> num",
 	"E -> ++ E"
 ];
+*/
+
+var productions = [
+	"E -> T E'",
+	"E' -> + T E'",
+	"E' -> ''",
+	"T -> F T'",
+	"T' -> * F T'",
+	"T' -> ''",
+	"F -> id",
+	"F -> ( E )"
+]
+
+
 var [productions, nonTerminals, terminals] = modifyProductionList(productions);
 findFirst(productions, nonTerminals, terminals);
+
 /*
 printModifiedProductions(productions);
 console.log(nonTerminals);
