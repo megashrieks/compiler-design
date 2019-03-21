@@ -14,6 +14,17 @@ function printParseTable(parseTable, terminals, nonTerminals) {
 	}
 }
 */
+function printModifiedProductions(lis) {
+	for (var i in lis) {
+		console.log(i);
+		console.log("first : ", lis[i]["first"]);
+		// console.log("follow : ", lis[i]["follow"]);
+		var productions = lis[i]["productions"];
+		for (var j = 0; j < productions.length; ++j)
+			console.log(productions[j]);
+		console.log();
+	}
+}
 // /*
 function printParseTable(parseTable, terminals, nonTerminals) {
 	for (var i = 0; i < terminals.length; ++i)
@@ -34,5 +45,6 @@ function printParseTable(parseTable, terminals, nonTerminals) {
 // */
 
 module.exports = {
-	printParseTable: printParseTable
+	printParseTable: printParseTable,
+	printModifiedProductions: printModifiedProductions
 };

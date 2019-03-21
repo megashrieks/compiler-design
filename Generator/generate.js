@@ -4,18 +4,6 @@ var [productions, nonTerminals, terminals] = modifyProductionList(
 );
 var parseTable = require("./first").first(productions, nonTerminals, terminals);
 
-printModifiedProductions(productions);
-
-function printModifiedProductions(lis) {
-	for (var i in lis) {
-		console.log(i);
-		console.log("first : ", lis[i]["first"]);
-		// console.log("follow : ", lis[i]["follow"]);
-		var productions = lis[i]["productions"];
-		for (var j = 0; j < productions.length; ++j)
-			console.log(productions[j]);
-		console.log();
-	}
-}
-
-require("./print table").printParseTable(parseTable, terminals, nonTerminals);
+// var pt = require("./print table");
+// pt.printModifiedProductions(productions);
+// pt.printParseTable(parseTable, terminals, nonTerminals);
