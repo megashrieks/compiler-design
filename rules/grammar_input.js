@@ -36,7 +36,7 @@ var productions = [
 	"F -> id",
 	"F -> ( E )"
 ];
-*/
+// */
 module.exports = {
 	grammar: productions
 };

@@ -4,10 +4,11 @@ var [productions, nonTerminals, terminals] = modifyProductionList(
 );
 var parseTable = require("./first").first(productions, nonTerminals, terminals);
 
-// var pt = require("./print table");
-// pt.printModifiedProductions(productions);
-// pt.printParseTable(parseTable, terminals, nonTerminals);
+var pt = require("./print");
+pt.printModifiedProductions(productions);
+pt.printParseTable(parseTable, terminals, nonTerminals);
+pt.printFirst(productions);
 
-var follows = require("./follow");
-follows.findFollow(productions);
-follows.printFollows(productions);
+require("./follow").findFollow(productions);
+
+pt.printFollows(productions);
