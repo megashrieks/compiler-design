@@ -56,11 +56,17 @@ function findFirst(productions, nonTerminals, terminals) {
 	var flag = true;
 	while (flag) {
 		flag = false;
+		epFlag = false;
 		for (var i in productions) {
 			var prod = productions[i].productions;
 			for (var j in prod) {
-				for (var k in prod[j]) {
-					if (prod[j][k] == "''") continue;
+				epFlag = false;
+				var k;
+				for (k in prod[j]) {
+					if (prod[j][k] == "''") {
+						epFlag = true;
+						continue;
+					}
 					if (isTerminal(prod[j][k])) {
 						if (!pFirst[i][j].has(prod[j][k])) {
 							flag = true;
@@ -70,30 +76,37 @@ function findFirst(productions, nonTerminals, terminals) {
 							);
 							// console.log(i, productions[i].first);
 						}
+						epFlag = false;
 						break;
 					} else {
-						console.log(i, prod[j][k]);
 						if (productions[prod[j][k]].first.size) {
 							var difference = new Set(
 								[...productions[prod[j][k]].first].filter(
 									x => !pFirst[i][j].has(x)
 								)
 							);
-							console.log(difference);
 							if (difference.size) {
+								console.log(i, prod[j][k]);
+								console.log(difference);
+								console.log();
 								// console.log(i, j, difference);
 								flag = true;
 								pFirst[i][j].add(...Array.from(difference));
 								productions[i].first.add(
-									...Array.from(pFirst[i][j])
+									...Array.from(difference)
 								);
 							}
-							if (productions[prod[j][k]].first.has("''"))
+							if (productions[prod[j][k]].first.has("''")) {
+								epFlag = true;
 								continue;
+							}
 						}
+						epFlag = false;
 						break;
 					}
 				}
+				if (epFlag && k == prod[j].length)
+					productions[i].first.add("''");
 			}
 		}
 	}
@@ -112,14 +125,29 @@ function printModifiedProductions(lis) {
 }
 
 var productions = [
-	"E = T E'",
-	"E' = + T E'",
-	"E' = ''",
-	"T = F T'",
-	"T' = * F T'",
-	"T' = ''",
-	"F = ( E )",
-	"F = id"
+	"Functions -> type id ( ) begin Body end",
+	"Body -> Declarations Body",
+	"Body -> Loops Body",
+	"Body -> Es Body",
+	"Body -> ''",
+	"Declarations -> type List ;",
+	"List -> AID I'",
+	"I' -> , AID I'",
+	"I' -> ''",
+	"AID -> id AID'",
+	"AID' -> = num",
+	"AID' -> ''",
+	"Loops -> for ( Es Es E ) begin Body end",
+	"Es -> E ;",
+	"E -> X E'",
+	"E' -> Op X E'",
+	"E' -> ''",
+	"Op -> +",
+	"Op -> <=",
+	"Op -> =",
+	"X -> id",
+	"X -> num",
+	"E -> ++ E"
 ];
 var [productions, nonTerminals, terminals] = modifyProductionList(productions);
 findFirst(productions, nonTerminals, terminals);
