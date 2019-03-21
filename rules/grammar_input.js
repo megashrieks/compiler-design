@@ -1,4 +1,4 @@
-/*
+// /*
 var productions = [
 	"Functions -> type id ( ) begin Body end",
 	"Body -> Declarations Body",
@@ -24,8 +24,8 @@ var productions = [
 	"X -> num",
 	"E -> ++ E"
 ];
-*/
-// /*
+// */
+/*
 var productions = [
 	"E -> T E'",
 	"E' -> + T E'",
@@ -36,7 +36,7 @@ var productions = [
 	"F -> id",
 	"F -> ( E )"
 ];
-// */
+*/
 module.exports = {
 	grammar: productions
 };

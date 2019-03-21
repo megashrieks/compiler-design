@@ -17,16 +17,26 @@ function modifyProductionList(productions) {
 	nonTerminals = Array.from(nonTerminals);
 
 	var lis = {};
+	var startFlag = true;
 	for (var i = 0; i < nonTerminals.length; ++i) {
 		var nProductions = [];
 		for (var j = 0; j < n; ++j)
 			if (productions[j][0] == nonTerminals[i])
 				nProductions.push(productions[j].slice(2));
-		lis[nonTerminals[i]] = {
-			productions: nProductions,
-			first: new Set(),
-			follow: new Set()
-		};
+		if (startFlag) {
+			startFlag = false;
+			lis[nonTerminals[i]] = {
+				productions: nProductions,
+				first: new Set(),
+				follow: new Set(["$"])
+			};
+		} else {
+			lis[nonTerminals[i]] = {
+				productions: nProductions,
+				first: new Set(),
+				follow: new Set()
+			};
+		}
 	}
 	return [lis, nonTerminals, terminals];
 }
