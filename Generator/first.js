@@ -79,6 +79,4 @@ function findFirst(productions, nonTerminals, terminals) {
 	}
 	return parseTable;
 }
-module.exports = {
-	first: findFirst
-};
+module.exports = findFirst;

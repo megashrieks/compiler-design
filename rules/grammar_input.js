@@ -37,6 +37,4 @@ var productions = [
 	"F -> ( E )"
 ];
 // */
-module.exports = {
-	grammar: productions
-};
+module.exports = productions;

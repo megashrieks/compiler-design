@@ -81,6 +81,4 @@ function findFollow(productions) {
 	}
 }
 
-module.exports = {
-	findFollow: findFollow
-};
+module.exports = findFollow;
