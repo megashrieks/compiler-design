@@ -54,7 +54,9 @@ function findFirstInit(productions, nonTerminals, terminals) {
 		parseTable[nonTerminals[i]] = {};
 		for (var j = 0; j < terminals.length; ++j)
 			//"" represents blank cell
-			parseTable[nonTerminals[i]][terminals[j]] = "";
+			if (terminals[j] != "''")
+				parseTable[nonTerminals[i]][terminals[j]] = "";
+			else parseTable[nonTerminals[i]]["$"] = "";
 		pFirst[nonTerminals[i]] = new Array(
 			productions[nonTerminals[i]]["productions"].length
 		)

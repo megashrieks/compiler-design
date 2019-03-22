@@ -1,41 +1,4 @@
 // /*
-var productions = ["Functions -> type id ( ) begin Body end",
-"Body -> Declarations LE",
-"LE -> Loops",
-"LE1 -> Expressions",
-"LE2 -> 
-"Body1 -> Loops ED",
-"ED -> Expressions",
-"ED1 -> Declarations",
-"ED2 -> 
-"Body2 -> Expressions LD",
-"LD -> Loops",
-"LD1 -> Declarations",
-"LD2 -> 
-"Body3 -> 
-"Declarations -> type List ;",
-"List -> Aid I'",
-"" ->  ", Aid I'",
-"" -> 1": "''",
-"Aid -> id Ai'",
-"" ->  "= num",
-"" -> 1": "''",
-"Loops -> for ( E ; E ; E ) begin Body end",
-"Expressions -> E ;",
-"E -> T E'",
-"" ->  "+ T E'",
-"" -> 1": "''",
-"T -> F T'",
-"" ->  "= F T'",
-"" -> 1": "''",
-"F -> R F'",
-"" ->  "<= R F'",
-"" -> 1": "''",
-"R ->  R",
-"R1 -> id",
-"R2 -> num"
-];
-/*
 var productions = [
 	"Functions -> type id ( ) begin Body end",
 	"Body -> Declarations Body",
@@ -59,7 +22,7 @@ var productions = [
 	"Op -> =",
 	"X -> id",
 	"X -> num",
-	"E -> ++ E"
+	"X -> ++ id"
 ];
 // */
 /*

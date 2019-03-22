@@ -1,5 +1,4 @@
-// const getRule = require("../Generator/generate");
-const getRule = require("../rules/table");
+const getRule = require("../Generator/generate");
 const isProduction = token => {
 	return !!token[0].match(/[A-Z]/);
 };

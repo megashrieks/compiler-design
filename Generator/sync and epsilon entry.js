@@ -1,7 +1,15 @@
-function addToFollows(productions, parseTable, nonTerminal, addition) {
+function addEpsilon(productions, parseTable, nonTerminal) {
 	var follows = Array.from(productions[nonTerminal].follow);
 	//adding in parsetable(nonterminal, elements in follow) production -> ''
-	for (var i in follows) parseTable[nonTerminal][follows[i]] = addition;
+	for (var i in follows) parseTable[nonTerminal][follows[i]] = ["''"];
+}
+function addSync(productions, parseTable, nonTerminal) {
+	var follows = Array.from(productions[nonTerminal].follow);
+	//adding in parsetable(nonterminal, elements in follow) sync
+	for (var i in follows) {
+		if (parseTable[nonTerminal][follows[i]] == "")
+			parseTable[nonTerminal][follows[i]] = "sync";
+	}
 }
 function SyncAndEpsilon(productions, parseTable) {
 	//selecting non terminals
@@ -13,13 +21,12 @@ function SyncAndEpsilon(productions, parseTable) {
 		for (var j in prods) {
 			//if the production -> ''
 			if (prods[j][0] == "''" && prods[j].length == 1) {
-				addToFollows(productions, parseTable, i, ["''"]);
+				addEpsilon(productions, parseTable, i);
 				hasEpsilonProduction = true;
 				break;
 			}
 		}
-		if (!hasEpsilonProduction)
-			addToFollows(productions, parseTable, i, "sync");
+		if (!hasEpsilonProduction) addSync(productions, parseTable, i);
 	}
 }
 
