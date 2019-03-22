@@ -20,45 +20,14 @@ function printParseTable(parseTable, terminals, nonTerminals) {
 	console.log("\tPARSE TABLE LIST");
 	console.log("===========================");
 	console.log();
-	for (var i = 0; i < nonTerminals.length; ++i) {
-		temp = nonTerminals[i];
-		for (var j = 0; j < terminals.length; ++j)
-			if (parseTable[nonTerminals[i]][terminals[j]] != "")
-				console.log(
-					nonTerminals[i],
-					"\t",
-					terminals[j],
-					"\t",
-					parseTable[nonTerminals[i]][terminals[j]]
-				);
+	for (var i in parseTable) {
+		for (var j in parseTable[i]) {
+			if (parseTable[i][j] != "")
+				console.log(i, "\t", j, "\t", parseTable[i][j]);
+		}
 	}
 	console.log();
 }
-// */
-/*
-function printParseTable(parseTable, terminals, nonTerminals) {
-	console.log("===========================");
-	console.log("\tPARSE TABLE");
-	console.log("===========================");
-	console.log();
-	for (var i = 0; i < terminals.length; ++i)
-		process.stdout.write("\t|\t" + terminals[i]);
-
-	var s = "-------";
-	process.stdout.write("\n" + s + "-+");
-	for (var i = 0; i < terminals.length; ++i)
-		process.stdout.write(s + s + "-+");
-	console.log();
-	for (var i = 0; i < nonTerminals.length; ++i) {
-		temp = nonTerminals[i];
-		for (var j = 0; j < terminals.length; ++j)
-			temp += "\t|\t" + parseTable[nonTerminals[i]][terminals[j]];
-		console.log(temp);
-	}
-	console.log();
-}
-// */
-
 function printFirst(productions) {
 	console.log("===========================");
 	console.log("\tFIRST");

@@ -1,4 +1,4 @@
-// /*
+/*
 var productions = [
 	"Functions -> type id ( ) begin Body end",
 	"Body -> Declarations Body",
@@ -25,7 +25,7 @@ var productions = [
 	"E -> ++ E"
 ];
 // */
-/*
+// /*
 var productions = [
 	"E -> T E'",
 	"E' -> + T E'",
