@@ -30,12 +30,7 @@ module.exports = [
 		sub: false
 	},
 	{
-		value: /^(\+\+|\-\-)$/,
-		name: "operator",
-		sub: true
-	},
-	{
-		value: /^(\+|\-|\*|\/ |\=)$/,
+		value: /^(\+|\-|\*|\/|\=)$/,
 		name: "operator",
 		sub: true
 	},

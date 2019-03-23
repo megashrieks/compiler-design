@@ -22,7 +22,7 @@ var productions = [
 	"Op -> =",
 	"X -> id",
 	"X -> num",
-	"X -> ++ id"
+	"X -> + + id"
 ];
 // */
 /*
