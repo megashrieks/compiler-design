@@ -14,7 +14,33 @@ function printModifiedProductions(lis) {
 	}
 	console.log();
 }
-// /*
+function printParseTableArray(parseTable, terminals, nonTerminals) {
+	console.log(nonTerminals)
+	console.log(terminals)
+
+	console.log("[")
+	for (var i in nonTerminals) {
+		process.stdout.write("[");
+		for (var j in terminals) {
+			var ter = terminals[j];
+			if (ter == "''")
+				ter = "$";
+			if (parseTable[nonTerminals[i]][ter] == "")
+				console.log("\"\"");
+			else if (parseTable[nonTerminals[i]][ter] == "sync")
+				console.log("\"sync\"");
+			else
+				console.log(parseTable[nonTerminals[i]][ter]);
+			if (j != terminals.length - 1) {
+				process.stdout.write(",");
+			}
+		}
+		process.stdout.write("]");
+		if (i != nonTerminals.length - 1)
+			process.stdout.write(",\n");
+	}
+	console.log("\n]")
+}
 function printParseTable(parseTable, terminals, nonTerminals) {
 	console.log("===========================");
 	console.log("\tPARSE TABLE LIST");
