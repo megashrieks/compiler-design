@@ -1,52 +1,51 @@
+const log = () => {};
 function printModifiedProductions(lis) {
-	console.log("===========================");
-	console.log("\tPRODUCTIONS JSON");
-	console.log("===========================");
-	console.log();
+	log("===========================");
+	log("\tPRODUCTIONS JSON");
+	log("===========================");
+	log();
 	for (var i in lis) {
-		console.log(i);
-		console.log("first : ", lis[i]["first"]);
-		console.log("follow : ", lis[i]["follow"]);
+		log(i);
+		log("first : ", lis[i]["first"]);
+		log("follow : ", lis[i]["follow"]);
 		var productions = lis[i]["productions"];
-		for (var j = 0; j < productions.length; ++j)
-			console.log(productions[j]);
-		console.log();
+		for (var j = 0; j < productions.length; ++j) log(productions[j]);
+		log();
 	}
-	console.log();
+	log();
 }
 // /*
 function printParseTable(parseTable, terminals, nonTerminals) {
-	console.log("===========================");
-	console.log("\tPARSE TABLE LIST");
-	console.log("===========================");
-	console.log();
+	log("===========================");
+	log("\tPARSE TABLE LIST");
+	log("===========================");
+	log();
 	for (var i in parseTable) {
 		for (var j in parseTable[i]) {
-			if (parseTable[i][j] != "")
-				console.log(i, "\t", j, "\t", parseTable[i][j]);
+			if (parseTable[i][j] != "") log(i, "\t", j, "\t", parseTable[i][j]);
 		}
 	}
-	console.log();
+	log();
 }
 function printFirst(productions) {
-	console.log("===========================");
-	console.log("\tFIRST");
-	console.log("===========================");
-	console.log();
+	log("===========================");
+	log("\tFIRST");
+	log("===========================");
+	log();
 	for (var i in productions) {
-		console.log(i, " : ", productions[i].first);
+		log(i, " : ", productions[i].first);
 	}
-	console.log();
+	log();
 }
 function printFollows(productions) {
-	console.log("===========================");
-	console.log("\tFOLLOWS");
-	console.log("===========================");
-	console.log();
+	log("===========================");
+	log("\tFOLLOWS");
+	log("===========================");
+	log();
 	for (var i in productions) {
-		console.log(i, " : ", productions[i].follow);
+		log(i, " : ", productions[i].follow);
 	}
-	console.log();
+	log();
 }
 module.exports = {
 	printParseTable: printParseTable,

@@ -1,10 +1,9 @@
 module.exports = `
 	int main()
 	begin
-		int sum = 0;
-		for(i = 0;i <= 10;++i)
+		int n, i, sum = 0;
+		for(i=1; i <= n; ++i)
 		begin
-			sum = ++sum;
 		end
 	end
 `;

@@ -1,3 +1,4 @@
+const log = () => {};
 function createParseTable() {
 	var modifyProductionList = require("./initialise").modifyProductionList;
 	var [productions, nonTerminals, terminals] = modifyProductionList(
@@ -13,7 +14,7 @@ function createParseTable() {
 	pt.printParseTable(parseTable, terminals, nonTerminals);
 	pt.printFirst(productions);
 	pt.printFollows(productions);
-	console.log(parseTable);
+	log(parseTable);
 	return parseTable;
 }
 const parseTable = createParseTable();
@@ -23,6 +24,6 @@ module.exports = (nonTerminal, terminal) => {
 		parseTable[nonTerminal][terminal] == "" ||
 		parseTable[nonTerminal][terminal] == "sync"
 	)
-		return [""];
+		return null;
 	return parseTable[nonTerminal][terminal];
 };

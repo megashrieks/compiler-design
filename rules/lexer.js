@@ -30,6 +30,11 @@ module.exports = [
 		sub: false
 	},
 	{
+		value: /^,$/,
+		name: "seperator comma",
+		sub: true
+	},
+	{
 		value: /^(\+|\-|\*|\/|\=)$/,
 		name: "operator",
 		sub: true

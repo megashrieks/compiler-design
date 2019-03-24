@@ -43,5 +43,9 @@ module.exports = (code, tokens = tks) => {
 				value: code.substr(lex_begin, i - lex_begin)
 			});
 	}
+	tokenList.push({
+		name: "$",
+		value: ""
+	});
 	return tokenList;
 };

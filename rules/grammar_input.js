@@ -1,5 +1,5 @@
-// /*
 var productions = [
+	"Start -> Functions",
 	"Functions -> type id ( ) begin Body end",
 	"Body -> Declarations Body",
 	"Body -> Loops Body",
@@ -24,7 +24,7 @@ var productions = [
 	"X -> num",
 	"X -> + + id"
 ];
-// */
+// var productions = ["Start -> S", "S -> for S end", "S -> ''"];
 /*
 var productions = [
 	"E -> T E'",
