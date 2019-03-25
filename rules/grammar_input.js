@@ -24,7 +24,18 @@ var productions = [
 	"X -> num",
 	"X -> + + id"
 ];
-// var productions = ["Start -> S", "S -> for S end", "S -> ''"];
+//desk calculator productions for testing sync
+// var productions = [
+// 	"Start -> E",
+// 	"E -> T E'",
+// 	"E' -> + T E'",
+// 	"E' -> ''",
+// 	"T -> F T'",
+// 	"T' -> * F T'",
+// 	"T' -> ''",
+// 	"F -> ( id )",
+// 	"F -> id"
+// ];
 /*
 var productions = [
 	"E -> T E'",
