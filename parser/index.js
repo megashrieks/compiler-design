@@ -91,8 +91,9 @@ module.exports = tokens => {
 				--top;
 				++tokenIndex;
 			} else {
-				printTrace(stack[top], token.name, "UNMATCHED");
-				return;
+				printTrace(stack[top], token.name, "UNMATCHED : popping");
+				stack.splice(top, 1);
+				--top;
 			}
 		}
 	}
