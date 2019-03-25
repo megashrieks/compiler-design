@@ -20,10 +20,6 @@ function createParseTable() {
 const parseTable = createParseTable();
 
 module.exports = (nonTerminal, terminal) => {
-	if (
-		parseTable[nonTerminal][terminal] == "" ||
-		parseTable[nonTerminal][terminal] == "sync"
-	)
-		return null;
+	if (parseTable[nonTerminal][terminal] == "") return null;
 	return parseTable[nonTerminal][terminal];
 };

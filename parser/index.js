@@ -43,6 +43,10 @@ module.exports = tokens => {
 	let top = 1;
 	let tokenIndex = 0;
 	while (top > 0) {
+		if (tokenIndex >= tokens.length) {
+			console.log("Reached end of file while parsing.");
+			return;
+		}
 		var token = tokens[tokenIndex];
 		if (stack[top] === "''") {
 			stack.splice(top, 1);
@@ -52,8 +56,18 @@ module.exports = tokens => {
 		if (isProduction(stack[top])) {
 			var rule = getRule(stack[top], token.name);
 			if (rule === null) {
-				printTrace(stack[top], token.name, "Error");
-				return;
+				printTrace(
+					stack[top],
+					token.name,
+					"Error, skipping input symbol"
+				);
+				++tokenIndex;
+				continue;
+			} else if (rule === "sync") {
+				printTrace(stack[top], token.name, "SYNC, popping stack");
+				stack.splice(top, 1);
+				--top;
+				continue;
 			}
 			printTrace(
 				stack[top],
