@@ -1,4 +1,4 @@
-const log = () => {};
+const log = () => { };
 function printModifiedProductions(lis) {
 	log("===========================");
 	log("\tPRODUCTIONS JSON");
@@ -15,31 +15,34 @@ function printModifiedProductions(lis) {
 	log();
 }
 function printParseTableArray(parseTable, terminals, nonTerminals) {
-	console.log(nonTerminals)
-	console.log(terminals)
+	console.log("Non Terminals : ", nonTerminals)
+	console.log("\nTerminals : ", terminals)
 
-	console.log("[")
+
+	console.log("\nParseTable")
+	console.log("==========\n[")
 	for (var i in nonTerminals) {
 		process.stdout.write("[");
+		var str = "";
 		for (var j in terminals) {
 			var ter = terminals[j];
 			if (ter == "''")
 				ter = "$";
 			if (parseTable[nonTerminals[i]][ter] == "")
-				console.log("\"\"");
+				str += "\"\"";
 			else if (parseTable[nonTerminals[i]][ter] == "sync")
-				console.log("\"sync\"");
+				str += "\"sync\"";
 			else
-				console.log(parseTable[nonTerminals[i]][ter]);
+				str += JSON.stringify(parseTable[nonTerminals[i]][ter]);
 			if (j != terminals.length - 1) {
-				process.stdout.write(",");
+				str += ",";
 			}
 		}
-		process.stdout.write("]");
+		console.log(str, "]");
 		if (i != nonTerminals.length - 1)
 			process.stdout.write(",\n");
 	}
-	console.log("\n]")
+	console.log("]\n")
 }
 function printParseTable(parseTable, terminals, nonTerminals) {
 	log("===========================");
@@ -74,7 +77,7 @@ function printFollows(productions) {
 	log();
 }
 module.exports = {
-	printParseTable: printParseTable,
+	printParseTable: printParseTableArray,
 	printModifiedProductions: printModifiedProductions,
 	printFirst: printFirst,
 	printFollows: printFollows
