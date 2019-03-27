@@ -33,19 +33,7 @@ var productions = [
 // 	"T -> F T'",
 // 	"T' -> * F T'",
 // 	"T' -> ''",
-// 	"F -> ( id )",
+// 	"F -> ( E )",
 // 	"F -> id"
 // ];
-/*
-var productions = [
-	"E -> T E'",
-	"E' -> + T E'",
-	"E' -> ''",
-	"T -> F T'",
-	"T' -> * F T'",
-	"T' -> ''",
-	"F -> id",
-	"F -> ( E )"
-];
-// */
 module.exports = productions;
